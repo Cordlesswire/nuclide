@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>Uninstalling – Nuclide | A framework for building native apps using React</title><meta name="viewport" content="width=device-width"><meta property="og:title" content="Uninstalling – Nuclide | A framework for building native apps using React"><meta property="og:type" content="website"><meta property="og:url" content="http://facebook.github.io/nuclide/index.html"><meta property="og:image" content="http://facebook.github.io/nuclide/img/opengraph.png?2"><meta property="og:description" content="A framework for building native apps using React"><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"><link rel="shortcut icon" href="/nuclide/img/favicon.png?2"><link rel="stylesheet" href="/nuclide/css/style.css"><script type="text/javascript" src="//use.typekit.net/vqa1hcx.js"></script><script type="text/javascript">try{Typekit.load();}catch(e){}</script></head><body><div class="container"><div class="nav-main"><div class="wrap"><a class="nav-home" href="/nuclide/"><img src="/nuclide/img/header_logo.png">Nuclide</a><div class="nav-site-wrapper"><ul class="nav-site nav-site-internal"><li><a href="/nuclide/docs/setup.html" class="active">Docs</a></li><li><a href="/nuclide/support.html" class="">Support</a></li></ul><ul class="nav-site nav-site-external"><li><a href="https://github.com/facebook/nuclide" class="">GitHub</a></li></ul></div></div></div><section class="content wrap documentationContent"><div class="nav-docs"><div class="nav-docs-section"><h3>Quick Start</h3><ul><li><a style="margin-left:0;" class="" href="/nuclide//docs/setup.html#content">Setup</a></li><li><a style="margin-left:0;" class="" href="/nuclide//docs/shortcuts.html#content">Keyboard Shortcuts</a></li><li><a style="margin-left:0;" class="active" href="/nuclide//docs/uninstall.html#content">Uninstalling</a></li></ul></div><div class="nav-docs-section"><h3>Feature Guides</h3><ul><li><a style="margin-left:0;" class="" href="/nuclide//docs/remote.html#content">Remote Development</a></li><li><a style="margin-left:0;" class="" href="/nuclide//docs/flow.html#content">Flow and JavaScript</a></li><li><a style="margin-left:0;" class="" href="/nuclide//docs/hack.html#content">Hack Development</a></li><li><a style="margin-left:0;" class="" href="/nuclide//docs/hg.html#content">Using with Mercurial</a></li></ul></div></div><div class="inner-content"><a id="content"></a><h1>Uninstalling<a class="edit-github" href="https://github.com/facebook/nuclide/blob/master/docs/uninstall.md">Edit on GitHub</a></h1><div><p>The uninstallation process for Nuclide differs depending on which version you have installed.</p><h2><a class="anchor" name="determining-installed-version"></a>Determining Installed Version <a class="hash-link" href="#determining-installed-version">#</a></h2><p>Determine which version of Nuclide you have installed with
+<a href="https://github.com/atom/apm" target="_blank">Atom Package Manager</a> (APM) from the command line.</p><div class="prism language-javascript">$ apm list <span class="token operator">--</span>no<span class="token operator">-</span>dev <span class="token operator">--</span>installed</div><p>The output will contain installed Atom packages and their versions.</p><div class="prism language-javascript"><span class="token operator">/</span>Users<span class="token regex">/foobar/</span><span class="token punctuation">.</span>atom<span class="token operator">/</span>packages <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+└── nuclide@X<span class="token punctuation">.</span>Y<span class="token punctuation">.</span>Z</div><p>Your installed version is the number following either the <code>nuclide</code> package or the first package
+starting with <code>nuclide-</code>. In the example above, the installed version is <code>X.Y.Z</code>.</p><h2><a class="anchor" name="uninstalling-nuclide"></a>Uninstalling &#x27;nuclide&#x27; <a class="hash-link" href="#uninstalling-nuclide">#</a></h2><h3><a class="anchor" name="current-release"></a>Current Release <a class="hash-link" href="#current-release">#</a></h3><p>If you only have the package named &#x27;nuclide&#x27; installed, uninstall it with the following command:</p><div class="prism language-javascript">$ apm uninstall nuclide</div><h4><a class="anchor" name="re-activate-disabled-core-packages"></a>Re-activate Disabled Core Packages <a class="hash-link" href="#re-activate-disabled-core-packages">#</a></h4><p>Nuclide replaces Atom&#x27;s &#x27;tree-view&#x27; package in order to support remote file systems. When
+uninstalling Nuclide, you need to re-activate the &#x27;tree-view&#x27; package yourself. The following are
+two ways to do that:</p><ul><li><p>Re-activate through Atom&#x27;s Settings page</p><ol><li>Go to <code>Atom &gt; Preferences &gt; Packages &gt; tree-view</code></li><li>Click the &quot;Enable&quot; button
+<img src="/static/images/re-enable-atom-tree-view.png" alt=""></li></ol></li><li><p>Edit your Atom &#x27;config.cson&#x27; file</p><ol><li>Open &#x27;~/.atom/config.cson&#x27;</li><li><p>Remove <code>&quot;tree-view&quot;</code> from the array of <code>disabledPackages</code> and save &#x27;config.cson&#x27;</p><div class="prism language-javascript"><span class="token string">&quot;*&quot;</span><span class="token punctuation">:</span>
+ core<span class="token punctuation">:</span>
+   disabledPackages<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+     <span class="token string">&quot;tree-view&quot;</span> # REMOVE THIS LINE
+   <span class="token punctuation">]</span></div></li></ol></li></ul><h3><a class="anchor" name="v0-0-35-and-prior"></a>v0.0.35 and Prior <a class="hash-link" href="#v0-0-35-and-prior">#</a></h3><p><a href="https://github.com/facebook/nuclide/releases/tag/v0.0.35" target="_blank">Nuclide v0.0.35</a> and earlier was released
+as many separate Atom packages. If you have any packages starting with <code>nuclide-</code>, you likely have
+some part of &lt;=v0.0.35 still installed.</p><p>Run the uninstall command below, which contains the full list of Nuclide&#x27;s packages when they were
+last released on 25 November 2015. This is safe to run even if you only have a subset of the
+packages installed; <code>apm</code> will ignore any packages that are not present.</p><div class="prism language-javascript">$ apm uninstall \
+hyperclick \
+nuclide<span class="token operator">-</span>arcanist \
+nuclide<span class="token operator">-</span>blame \
+nuclide<span class="token operator">-</span>blame<span class="token operator">-</span>provider<span class="token operator">-</span>hg \
+nuclide<span class="token operator">-</span>blame<span class="token operator">-</span>ui \
+nuclide<span class="token operator">-</span>buck<span class="token operator">-</span>files \
+nuclide<span class="token operator">-</span>busy<span class="token operator">-</span>signal \
+nuclide<span class="token operator">-</span>clang<span class="token operator">-</span>atom \
+nuclide<span class="token operator">-</span>clipboard<span class="token operator">-</span>path \
+nuclide<span class="token operator">-</span>code<span class="token operator">-</span>format \
+nuclide<span class="token operator">-</span>code<span class="token operator">-</span>highlight \
+nuclide<span class="token operator">-</span>debugger<span class="token operator">-</span>atom \
+nuclide<span class="token operator">-</span>debugger<span class="token operator">-</span>hhvm \
+nuclide<span class="token operator">-</span>debugger<span class="token operator">-</span>lldb \
+nuclide<span class="token operator">-</span>diagnostics<span class="token operator">-</span>store \
+nuclide<span class="token operator">-</span>diagnostics<span class="token operator">-</span>ui \
+nuclide<span class="token operator">-</span>diff<span class="token operator">-</span>view \
+nuclide<span class="token operator">-</span>file<span class="token operator">-</span>tree \
+nuclide<span class="token operator">-</span>file<span class="token operator">-</span>watcher \
+nuclide<span class="token operator">-</span>find<span class="token operator">-</span>references \
+nuclide<span class="token operator">-</span>flow \
+nuclide<span class="token operator">-</span>format<span class="token operator">-</span>js \
+nuclide<span class="token operator">-</span>fuzzy<span class="token operator">-</span>filename<span class="token operator">-</span>provider \
+nuclide<span class="token operator">-</span>hack \
+nuclide<span class="token operator">-</span>hack<span class="token operator">-</span>symbol<span class="token operator">-</span>provider \
+nuclide<span class="token operator">-</span>health \
+nuclide<span class="token operator">-</span>hg<span class="token operator">-</span>repository \
+nuclide<span class="token operator">-</span>home \
+nuclide<span class="token operator">-</span>installer \
+nuclide<span class="token operator">-</span>language<span class="token operator">-</span>hack \
+nuclide<span class="token operator">-</span>move<span class="token operator">-</span>pane \
+nuclide<span class="token operator">-</span>objc \
+nuclide<span class="token operator">-</span>ocaml \
+nuclide<span class="token operator">-</span>open<span class="token operator">-</span>filenames<span class="token operator">-</span>provider \
+nuclide<span class="token operator">-</span>quick<span class="token operator">-</span>open \
+nuclide<span class="token operator">-</span>react<span class="token operator">-</span>native<span class="token operator">-</span>inspector \
+nuclide<span class="token operator">-</span>recent<span class="token operator">-</span>files<span class="token operator">-</span>provider \
+nuclide<span class="token operator">-</span>recent<span class="token operator">-</span>files<span class="token operator">-</span>service \
+nuclide<span class="token operator">-</span>remote<span class="token operator">-</span>projects \
+nuclide<span class="token operator">-</span>service<span class="token operator">-</span>monitor \
+nuclide<span class="token operator">-</span>test<span class="token operator">-</span>runner \
+nuclide<span class="token operator">-</span>toolbar \
+nuclide<span class="token operator">-</span>type<span class="token operator">-</span>hint \
+nuclide<span class="token operator">-</span>url<span class="token operator">-</span>hyperclick</div></div><div class="docs-prevnext"><a class="docs-next" href="remote.html#content">Next →</a></div></div></section><footer class="wrap"><div class="center">© 2015 Facebook Inc.</div></footer></div><div id="fb-root"></div><script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-41298772-2', 'facebook.github.io');
+            ga('send', 'pageview');
+
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)
+            ){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+          </script><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script src="/nuclide/js/scripts.js"></script></body></html>
