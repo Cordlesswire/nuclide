@@ -14,7 +14,7 @@ cd ../../
 if [ "$TRAVIS" ]; then
   git clone "https://reactjs-bot@github.com/facebook/nuclide.git" nuclide-gh-pages
 else
-  git clone git://github.com/facebook/nuclide.git nuclide-gh-pages
+  git clone git@github.com:vjeux/nuclide.git nuclide-gh-pages
 fi
 cd nuclide-gh-pages
 git checkout origin/gh-pages

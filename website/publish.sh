@@ -21,7 +21,6 @@ rm -Rf *
 cd ../nuclide/website
 node server/generate.js
 cp -R build/nuclide/* ../../nuclide-gh-pages/
-cp ../circle.yml ../../nuclide-gh-pages/
 rm -Rf build/
 cd ../../nuclide-gh-pages
 git status
