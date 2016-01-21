@@ -1,0 +1,4 @@
+src/nuclide/docs/**
+core/metadata.js
+*.log
+node_modules/
